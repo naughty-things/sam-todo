@@ -62,6 +62,10 @@
     .tag-due-today { background: #5c2a2a; color: #ff6b6b; }
     .tag-ongoing { background: #3a2a2a; color: #f09080; }
     .done-tag { background: #2a4a2a; color: #80f080; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; }
+    .done-tag[data-hide] { display: none; }
+    .task-title.done[data-hide] { text-decoration: none; color: #fff; }
+    .checkbox.checked[data-hide] { background: transparent; border-color: #555; }
+    .checkbox.checked[data-hide]::after { content: none; }
     .post {
       background: #252540;
       border-radius: 8px;
@@ -84,50 +88,7 @@
     a { color: #7eb8f7; text-decoration: none; }
     a:hover { text-decoration: underline; }
     .footer { text-align: center; color: #555; font-size: 0.75rem; margin-top: 3rem; }
-    .done-tag[data-hide] { display: none; }
-    .task-title.done[data-hide] { text-decoration: none; color: #fff; }
-    .checkbox.checked[data-hide] { background: transparent; border-color: #555; }
-    .checkbox.checked[data-hide]::after { content: none; }
   </style>
-  <script>
-    (function() {
-      var today = new Date();
-      var dateStr = ('0' + today.getDate()).slice(-2) + '/' + ('0' + (today.getMonth() + 1)).slice(-2);
-      var isoDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-
-      // Reset tasks with data-reset="daily" if last done date is not today
-      document.querySelectorAll('[data-reset="daily"]').forEach(function(el) {
-        var doneDate = el.getAttribute('data-done-date');
-        if (doneDate && doneDate !== isoDate) {
-          el.setAttribute('data-hide', '');
-        }
-      });
-
-      // Highlight tasks due today in red
-      document.querySelectorAll('[data-due-date]').forEach(function(el) {
-        var dueDate = el.getAttribute('data-due-date');
-        if (dueDate === isoDate) {
-          if (el.classList.contains('tag-due')) {
-            el.classList.add('tag-due-today');
-            el.textContent = '⚠ due today';
-          } else {
-            var tag = el.querySelector('.tag-due');
-            if (tag) {
-              tag.classList.add('tag-due-today');
-              tag.textContent = '⚠ due today';
-            }
-          }
-        }
-      });
-
-      // Update the "Last refreshed" timestamp
-      var updated = document.querySelector('.updated');
-      if (updated) {
-        updated.textContent = 'Last refreshed: ' + dateStr + ' ' +
-          ('0' + today.getHours()).slice(-2) + ':' + ('0' + today.getMinutes()).slice(-2) + ' GMT+8';
-      }
-    })();
-  </script>
 </head>
 <body>
   <div class="container">
@@ -232,5 +193,45 @@
 
     <p class="footer">Managed by Cheri</p>
   </div>
+
+  <script>
+    (function() {
+      var today = new Date();
+      var dateStr = ('0' + today.getDate()).slice(-2) + '/' + ('0' + (today.getMonth() + 1)).slice(-2);
+      var isoDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+
+      // Reset daily-reset tasks if last done date is not today
+      document.querySelectorAll('[data-reset="daily"]').forEach(function(el) {
+        var doneDate = el.getAttribute('data-done-date');
+        if (doneDate && doneDate !== isoDate) {
+          el.setAttribute('data-hide', '');
+        }
+      });
+
+      // Highlight tasks due today in red
+      document.querySelectorAll('[data-due-date]').forEach(function(el) {
+        var dueDate = el.getAttribute('data-due-date');
+        if (dueDate === isoDate) {
+          if (el.classList.contains('tag-due')) {
+            el.classList.add('tag-due-today');
+            el.textContent = '⚠ due today';
+          } else {
+            var tag = el.querySelector('.tag-due');
+            if (tag) {
+              tag.classList.add('tag-due-today');
+              tag.textContent = '⚠ due today';
+            }
+          }
+        }
+      });
+
+      // Update "Last refreshed" timestamp
+      var updated = document.querySelector('.updated');
+      if (updated) {
+        updated.textContent = 'Last refreshed: ' + dateStr + ' ' +
+          ('0' + today.getHours()).slice(-2) + ':' + ('0' + today.getMinutes()).slice(-2) + ' GMT+8';
+      }
+    })();
+  </script>
 </body>
 </html>
