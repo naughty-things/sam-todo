@@ -106,10 +106,17 @@
       // Highlight tasks due today in red
       document.querySelectorAll('[data-due-date]').forEach(function(el) {
         var dueDate = el.getAttribute('data-due-date');
-        var tag = el.querySelector('.tag-due');
-        if (dueDate === isoDate && tag) {
-          tag.classList.add('tag-due-today');
-          tag.textContent = '⚠ due today';
+        if (dueDate === isoDate) {
+          if (el.classList.contains('tag-due')) {
+            el.classList.add('tag-due-today');
+            el.textContent = '⚠ due today';
+          } else {
+            var tag = el.querySelector('.tag-due');
+            if (tag) {
+              tag.classList.add('tag-due-today');
+              tag.textContent = '⚠ due today';
+            }
+          }
         }
       });
 
