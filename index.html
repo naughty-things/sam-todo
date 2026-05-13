@@ -83,7 +83,33 @@
     a { color: #7eb8f7; text-decoration: none; }
     a:hover { text-decoration: underline; }
     .footer { text-align: center; color: #555; font-size: 0.75rem; margin-top: 3rem; }
+    .done-tag[data-hide] { display: none; }
+    .task-title.done[data-hide] { text-decoration: none; color: #fff; }
+    .checkbox.checked[data-hide] { background: transparent; border-color: #555; }
+    .checkbox.checked[data-hide]::after { content: none; }
   </style>
+  <script>
+    (function() {
+      var today = new Date();
+      var dateStr = ('0' + today.getDate()).slice(-2) + '/' + ('0' + (today.getMonth() + 1)).slice(-2);
+      var isoDate = today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
+
+      // Reset tasks with data-reset="daily" if last done date is not today
+      document.querySelectorAll('[data-reset="daily"]').forEach(function(el) {
+        var doneDate = el.getAttribute('data-done-date');
+        if (doneDate && doneDate !== isoDate) {
+          el.setAttribute('data-hide', '');
+        }
+      });
+
+      // Update the "Last refreshed" timestamp
+      var updated = document.querySelector('.updated');
+      if (updated) {
+        updated.textContent = 'Last refreshed: ' + dateStr + ' ' +
+          ('0' + today.getHours()).slice(-2) + ':' + ('0' + today.getMinutes()).slice(-2) + ' GMT+8';
+      }
+    })();
+  </script>
 </head>
 <body>
   <div class="container">
@@ -92,7 +118,7 @@
 
     <h2>This Week</h2>
 
-    <div class="task">
+    <div class="task" data-reset="daily" data-done-date="2026-05-13">
       <div class="checkbox checked"></div>
       <div class="task-content">
         <span class="task-title done">Toshiba enquiry</span>
