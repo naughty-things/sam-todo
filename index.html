@@ -59,6 +59,7 @@
     }
     .tag-recurring { background: #2a3a5c; color: #7eb8f7; }
     .tag-due { background: #3a3a5c; color: #a0a0c0; }
+    .tag-due-today { background: #5c2a2a; color: #ff6b6b; }
     .tag-ongoing { background: #3a2a2a; color: #f09080; }
     .done-tag { background: #2a4a2a; color: #80f080; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; margin-left: 0.5rem; }
     .post {
@@ -102,6 +103,16 @@
         }
       });
 
+      // Highlight tasks due today in red
+      document.querySelectorAll('[data-due-date]').forEach(function(el) {
+        var dueDate = el.getAttribute('data-due-date');
+        var tag = el.querySelector('.tag-due');
+        if (dueDate === isoDate && tag) {
+          tag.classList.add('tag-due-today');
+          tag.textContent = '⚠ due today';
+        }
+      });
+
       // Update the "Last refreshed" timestamp
       var updated = document.querySelector('.updated');
       if (updated) {
@@ -140,7 +151,7 @@
       <div class="checkbox"></div>
       <div class="task-content">
         <span class="task-title">HKURISE storyboard</span>
-        <span class="tag tag-due">due 13/5 EOD</span><br>
+        <span class="tag tag-due" data-due-date="2026-05-13">due 13/5 EOD</span><br>
         <a href="https://docs.google.com/presentation/d/1RV7ybzPtaF_EUcL10MvZl9YVtKxZaJoixO89UOzzDGk/edit?slide=id.g3e7dc6ada52_0_12" target="_blank" rel="noopener noreferrer">Working slide ↗</a>
         <a href="https://www.linkedin.com/feed/update/urn:li:activity:7458457989742587904/" target="_blank" rel="noopener noreferrer">LinkedIn ref ↗</a>
         <a href="https://www.stheadline.com/ad-innovation/3543221/%E6%B8%AF%E5%A4%A7%E6%95%99%E6%8E%88%E5%B8%B6%E9%9A%8A%E5%89%B5%E6%A5%AD-%E5%85%88%E9%80%B2%E5%8D%8A%E5%B0%8E%E9%AB%94%E7%86%B1%E7%AE%A1%E7%90%86%E6%8A%80%E8%A1%93-%E7%A0%B4%E8%A7%A3%E9%9B%BB%E5%8B%95%E8%BB%8A%E8%88%87AI%E9%81%8E%E7%86%B1%E6%AD%BB%E7%A9%B4" target="_blank" rel="noopener noreferrer">News ref ↗</a>
