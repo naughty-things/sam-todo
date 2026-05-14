@@ -97,12 +97,11 @@
 
     <h2>This Week</h2>
 
-    <div class="task" data-reset="daily" data-done-date="2026-05-13">
-      <div class="checkbox checked"></div>
+    <div class="task" data-reset="weekly">
+      <div class="checkbox"></div>
       <div class="task-content">
-        <span class="task-title done">Toshiba enquiry</span>
+        <span class="task-title">Toshiba enquiry</span>
         <span class="tag tag-recurring">🔄 every week</span>
-        <span class="done-tag">✅ done 13/5</span>
       </div>
     </div>
 
@@ -205,6 +204,31 @@
         var doneDate = el.getAttribute('data-done-date');
         if (doneDate && doneDate !== isoDate) {
           el.setAttribute('data-hide', '');
+        }
+      });
+
+      // Reset weekly-reset tasks if last done date is in a different week
+      document.querySelectorAll('[data-reset="weekly"]').forEach(function(el) {
+        var doneDateStr = el.getAttribute('data-done-date');
+        if (doneDateStr) {
+          var doneDate = new Date(doneDateStr + 'T00:00:00');
+          var doneWeekStart = new Date(today);
+          doneWeekStart.setDate(today.getDate() - today.getDay() + 1); // Mon
+          doneWeekStart.setHours(0, 0, 0, 0);
+          var doneWeekEnd = new Date(doneWeekStart);
+          doneWeekEnd.setDate(doneWeekStart.getDate() + 6);
+          doneWeekEnd.setHours(23, 59, 59, 999);
+          var todayWeekStart = new Date(doneWeekStart);
+          if (doneDate < doneWeekStart || doneDate > doneWeekEnd) {
+            // Different week — reset checkbox and done-tag
+            el.removeAttribute('data-done-date');
+            var checkbox = el.querySelector('.checkbox');
+            var title = el.querySelector('.task-title');
+            var doneTag = el.querySelector('.done-tag');
+            if (checkbox) checkbox.classList.remove('checked');
+            if (title) title.classList.remove('done');
+            if (doneTag) doneTag.remove();
+          }
         }
       });
 
