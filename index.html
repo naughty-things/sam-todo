@@ -106,7 +106,7 @@
       </div>
     </div>
 
-    <div class="task">
+    <div class="task" data-reset="weekly" data-done-date="2026-05-11">
       <div class="checkbox checked"></div>
       <div class="task-content">
         <span class="task-title done">Weekly report for HKURISE</span>
@@ -206,6 +206,21 @@
         var doneDate = el.getAttribute('data-done-date');
         if (doneDate && doneDate !== isoDate) {
           // Just uncheck — don't hide — so the task stays visible to remind them
+          var checkbox = el.querySelector('.checkbox');
+          var title = el.querySelector('.task-title');
+          var doneTag = el.querySelector('.done-tag');
+          if (checkbox) checkbox.classList.remove('checked');
+          if (title) title.classList.remove('done');
+          if (doneTag) doneTag.remove();
+          el.removeAttribute('data-done-date');
+        }
+      });
+
+      // Reset weekly-reset tasks on Monday if not done this week
+      document.querySelectorAll('[data-reset="weekly"]').forEach(function(el) {
+        var doneDate = el.getAttribute('data-done-date');
+        var isMonday = today.getDay() === 1; // 1 = Monday
+        if (isMonday && doneDate && doneDate !== isoDate) {
           var checkbox = el.querySelector('.checkbox');
           var title = el.querySelector('.task-title');
           var doneTag = el.querySelector('.done-tag');
