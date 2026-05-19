@@ -108,7 +108,7 @@
 <body>
   <div class="container">
     <h1>Sam's TODO List</h1>
-    <p class="updated">Last updated: 2026-05-19 13:40 GMT+8</p>
+    <p class="updated">Last updated: 2026-05-19 13:50 GMT+8</p>
 
     <div class="tabs">
       <button class="tab-btn active" onclick="showTab('active')">Active</button>
@@ -154,37 +154,28 @@
 
       <h2>Toshiba Social Posts (Ongoing)</h2>
 
-    <div class="post">
-      <div class="post-title">Apr Post 2 — Toshiba Split type Air Conditioner</div>
-      <div class="post-meta">Target launch: 15 April · Copy: KN · Design: Leo</div>
-      <span class="status status-waiting">✅ Photos approved · Copy pending · Postponed to end of May (was TBC)</span>
-      <div class="email-loop">Toshiba Apr Post 2 - Toshiba Split type Air Conditioner</div>
-    </div>
+      <div class="post">
+        <div class="post-title">Apr Post 2 — Toshiba Split type Air Conditioner</div>
+        <div class="post-meta">Target launch: 15 April · Copy: KN · Design: Leo</div>
+        <span class="status status-waiting">✅ Photos approved · Copy pending · Postponed to end of May (was TBC)</span>
+        <div class="email-loop">Toshiba Apr Post 2 - Toshiba Split type Air Conditioner</div>
+      </div>
 
-    <div class="post">
-      <div class="post-title">Feb Post 7 — 60cm dishwasher (DW-18F5) new launch</div>
-      <div class="post-meta">Target launch: 24 April · Copy: KN · Design: Leo</div>
-      <span class="status status-pending">✉️ Email sent, pending client confirm</span>
-      <div class="email-loop">Toshiba Feb Post 7 - 60cm dishwasher (DW-18F5) new launch</div>
-    </div>
+      <div class="post">
+        <div class="post-title">Feb Post 7 — 60cm dishwasher (DW-18F5) new launch</div>
+        <div class="post-meta">Target launch: 24 April · Copy: KN · Design: Leo</div>
+        <span class="status status-pending">✉️ Email sent, pending client confirm</span>
+        <div class="email-loop">Toshiba Feb Post 7 - 60cm dishwasher (DW-18F5) new launch</div>
+      </div>
 
-    <div class="post">
-      <div class="post-title">May Post 1 — New Rice Cooker RC-5DRWHK(W)</div>
-      <div class="post-meta">Target launch: 11 May · Copy: KN · Design: Leo</div>
-      <span class="status status-pending">✉️ Sent to client, awaiting confirm</span><br>
-      <a href="https://docs.google.com/presentation/d/1xHQv0Ja1gwPF5A1ze2tpif0A1-567Mu8Ivi6D--fZb8/edit" target="_blank" rel="noopener noreferrer">Internal deck ↗</a>
-      <a href="https://docs.google.com/presentation/d/1Wb6lxV2_jPlAa0EANlw_0UtnewfpfHAdc8BlMKxYarQ/edit?slide=id.g3df8868e118_0_0" target="_blank" rel="noopener noreferrer">Storyboard ↗</a>
-      <div class="email-loop">Toshiba May - New rice cooker(non-IH) - RC-5DRWHK(W)</div>
-    </div>
-
-    <div class="post">
-      <div class="post-title">May Post 5 — SOGO Thankful Promotion Invitation</div>
-      <div class="post-meta">Target launch: 15 May · Promotion period: 18–31 May · Copy: KN · Design: Leo</div>
-      <span class="status status-waiting">✅ Done</span><br>
-      <a href="https://drive.google.com/drive/folders/1YCjnNQSOIMkThYXxMoZUq8s0JOFArfUW" target="_blank" rel="noopener noreferrer">Files ↗</a>
-      <div class="email-loop">Sogo Thanksful 2026</div>
-    </div>
-
+      <div class="post">
+        <div class="post-title">May Post 1 — New Rice Cooker RC-5DRWHK(W)</div>
+        <div class="post-meta">Target launch: 11 May · Copy: KN · Design: Leo</div>
+        <span class="status status-pending">✉️ Sent to client, awaiting confirm</span><br>
+        <a href="https://docs.google.com/presentation/d/1xHQv0Ja1gwPF5A1ze2tpif0A1-567Mu8Ivi6D--fZb8/edit" target="_blank" rel="noopener noreferrer">Internal deck ↗</a>
+        <a href="https://docs.google.com/presentation/d/1Wb6lxV2_jPlAa0EANlw_0UtnewfpfHAdc8BlMKxYarQ/edit?slide=id.g3df8868e118_0_0" target="_blank" rel="noopener noreferrer">Storyboard ↗</a>
+        <div class="email-loop">Toshiba May - New rice cooker(non-IH) - RC-5DRWHK(W)</div>
+      </div>
     </div>
 
     <div id="tab-finished" class="tab-content">
@@ -217,7 +208,15 @@
         </div>
       </div>
 
-      <p style="color:#555;font-size:0.85rem;margin-top:1rem;">Non-recurring completed tasks appear here.</p>
+      <h2>Toshiba Social Posts (Done)</h2>
+
+      <div class="post">
+        <div class="post-title">May Post 5 — SOGO Thankful Promotion Invitation</div>
+        <div class="post-meta">Target launch: 15 May · Promotion period: 18–31 May · Copy: KN · Design: Leo</div>
+        <span class="status status-waiting">✅ Done</span><br>
+        <a href="https://drive.google.com/drive/folders/1YCjnNQSOIMkThYXxMoZUq8s0JOFArfUW" target="_blank" rel="noopener noreferrer">Files ↗</a>
+        <div class="email-loop">Sogo Thanksful 2026</div>
+      </div>
     </div>
 
     <p class="footer">Managed by Cheri</p>
@@ -240,7 +239,6 @@
       document.querySelectorAll('[data-reset="daily"]').forEach(function(el) {
         var doneDate = el.getAttribute('data-done-date');
         if (doneDate && doneDate !== isoDate) {
-          // Just uncheck — don't hide — so the task stays visible to remind them
           var checkbox = el.querySelector('.checkbox');
           var title = el.querySelector('.task-title');
           var doneTag = el.querySelector('.done-tag');
@@ -254,7 +252,7 @@
       // Reset weekly-reset tasks on Monday if not done this week
       document.querySelectorAll('[data-reset="weekly"]').forEach(function(el) {
         var doneDate = el.getAttribute('data-done-date');
-        var isMonday = today.getDay() === 1; // 1 = Monday
+        var isMonday = today.getDay() === 1;
         if (isMonday && doneDate && doneDate !== isoDate) {
           var checkbox = el.querySelector('.checkbox');
           var title = el.querySelector('.task-title');
@@ -265,8 +263,6 @@
           el.removeAttribute('data-done-date');
         }
       });
-
-
 
       // Highlight tasks due today in red
       document.querySelectorAll('[data-due-date]').forEach(function(el) {
