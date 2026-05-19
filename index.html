@@ -88,78 +88,71 @@
     a { color: #7eb8f7; text-decoration: none; }
     a:hover { text-decoration: underline; }
     .footer { text-align: center; color: #555; font-size: 0.75rem; margin-top: 3rem; }
+    .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .tab-btn {
+      background: #252540;
+      border: 1px solid #333;
+      color: #888;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { background: #2a2a4a; color: #e0e0e0; }
+    .tab-btn.active { background: #3a3a6a; color: #fff; border-color: #5a5a8a; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Sam's TODO List</h1>
-    <p class="updated">Last updated: 2026-05-19 13:29 GMT+8</p>
+    <p class="updated">Last updated: 2026-05-19 13:40 GMT+8</p>
 
-    <h2>This Week</h2>
-
-    <div class="task" data-reset="daily" data-done-date="2026-05-18">
-      <div class="checkbox checked"></div>
-      <div class="task-content">
-        <span class="task-title done">Toshiba enquiry</span>
-        <span class="tag tag-recurring">🔄 every week</span>
-        <span class="done-tag">✅ done 19/5</span>
-      </div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('active')">Active</button>
+      <button class="tab-btn" onclick="showTab('finished')">Finished</button>
     </div>
 
-    <div class="task" data-reset="weekly" data-done-date="2026-05-18">
-      <div class="checkbox checked"></div>
-      <div class="task-content">
-        <span class="task-title done">Weekly report for HKURISE</span>
-        <span class="tag tag-recurring">🔄 every Monday</span>
-        <span class="done-tag">✅ sent 18/5</span>
-      </div>
-    </div>
+    <div id="tab-active" class="tab-content active">
+      <h2>This Week</h2>
 
-    <div class="task">
-      <div class="checkbox checked"></div>
-      <div class="task-content">
-        <span class="task-title done">HKURISE storyboard</span>
-        <span class="done-tag">✅ done 13/5</span><br>
-        <a href="https://docs.google.com/presentation/d/1RV7ybzPtaF_EUcL10MvZl9YVtKxZaJoixO89UOzzDGk/edit?slide=id.g3e7dc6ada52_0_12" target="_blank" rel="noopener noreferrer">Working slide ↗</a>
-        <a href="https://www.linkedin.com/feed/update/urn:li:activity:7458457989742587904/" target="_blank" rel="noopener noreferrer">LinkedIn ref ↗</a>
-        <a href="https://www.stheadline.com/ad-innovation/3543221/%E6%B8%AF%E5%A4%A7%E6%95%99%E6%8E%88%E5%B8%B6%E9%9A%8A%E5%89%B5%E6%A5%AD-%E5%85%88%E9%80%B2%E5%8D%8A%E5%B0%8E%E9%AB%94%E7%86%B1%E7%AE%A1%E7%90%86%E6%8A%80%E8%A1%93-%E7%A0%B4%E8%A7%A3%E9%9B%BB%E5%8B%95%E8%BB%8A%E8%88%87AI%E9%81%8E%E7%86%B1%E6%AD%BB%E7%A9%B4" target="_blank" rel="noopener noreferrer">News ref ↗</a>
+      <div class="task" data-reset="daily" data-done-date="2026-05-19">
+        <div class="checkbox checked"></div>
+        <div class="task-content">
+          <span class="task-title done">Toshiba enquiry</span>
+          <span class="tag tag-recurring">🔄 every week</span>
+          <span class="done-tag">✅ done 19/5</span>
+        </div>
       </div>
-    </div>
 
-    <div class="task">
-      <div class="checkbox checked"></div>
-      <div class="task-content">
-        <span class="task-title done">Bodyshop report</span>
-        <span class="done-tag">✅ done 13/5</span>
+      <div class="task" data-reset="weekly" data-done-date="2026-05-18">
+        <div class="checkbox checked"></div>
+        <div class="task-content">
+          <span class="task-title done">Weekly report for HKURISE</span>
+          <span class="tag tag-recurring">🔄 every Monday</span>
+          <span class="done-tag">✅ sent 18/5</span>
+        </div>
       </div>
-    </div>
 
-    <div class="task">
-      <div class="checkbox checked"></div>
-      <div class="task-content">
-        <span class="task-title done">Toshiba ad report</span>
-        <span class="tag tag-due">due this week</span>
-        <span class="done-tag">✅ done 14/5</span>
+      <div class="task">
+        <div class="checkbox"></div>
+        <div class="task-content">
+          <span class="task-title">Alpha gallery update list</span>
+          <span class="tag tag-due">due this week</span>
+        </div>
       </div>
-    </div>
 
-    <div class="task">
-      <div class="checkbox"></div>
-      <div class="task-content">
-        <span class="task-title">Alpha gallery update list</span>
-        <span class="tag tag-due">due this week</span>
+      <div class="task">
+        <div class="checkbox"></div>
+        <div class="task-content">
+          <span class="task-title">Toshiba post x 4</span>
+          <span class="tag tag-ongoing">ongoing</span>
+        </div>
       </div>
-    </div>
 
-    <div class="task">
-      <div class="checkbox"></div>
-      <div class="task-content">
-        <span class="task-title">Toshiba post x 4</span>
-        <span class="tag tag-ongoing">ongoing</span>
-      </div>
-    </div>
-
-    <h2>Toshiba Social Posts (Ongoing)</h2>
+      <h2>Toshiba Social Posts (Ongoing)</h2>
 
     <div class="post">
       <div class="post-title">Apr Post 2 — Toshiba Split type Air Conditioner</div>
@@ -192,10 +185,52 @@
       <div class="email-loop">Sogo Thanksful 2026</div>
     </div>
 
+    </div>
+
+    <div id="tab-finished" class="tab-content">
+      <h2>Finished</h2>
+
+      <div class="task">
+        <div class="checkbox checked"></div>
+        <div class="task-content">
+          <span class="task-title done">HKURISE storyboard</span>
+          <span class="done-tag">✅ done 13/5</span><br>
+          <a href="https://docs.google.com/presentation/d/1RV7ybzPtaF_EUcL10MvZl9YVtKxZaJoixO89UOzzDGk/edit?slide=id.g3e7dc6ada52_0_12" target="_blank" rel="noopener noreferrer">Working slide ↗</a>
+          <a href="https://www.linkedin.com/feed/update/urn:li:activity:7458457989742587904/" target="_blank" rel="noopener noreferrer">LinkedIn ref ↗</a>
+          <a href="https://www.stheadline.com/ad-innovation/3543221/%E6%B8%AF%E5%A4%A7%E6%95%99%E6%8E%88%E5%B8%B6%E9%9A%8A%E5%89%B5%E6%A5%AD-%E5%85%88%E9%80%B2%E5%8D%8A%E5%B0%8E%E9%AB%94%E7%86%B1%E7%AE%A1%E7%90%86%E6%8A%80%E8%A1%93-%E7%A0%B4%E8%A7%A3%E9%9B%BB%E5%8B%95%E8%BB%8A%E8%88%87AI%E9%81%8E%E7%86%B1%E6%AD%BB%E7%A9%B4" target="_blank" rel="noopener noreferrer">News ref ↗</a>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="checkbox checked"></div>
+        <div class="task-content">
+          <span class="task-title done">Bodyshop report</span>
+          <span class="done-tag">✅ done 13/5</span>
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="checkbox checked"></div>
+        <div class="task-content">
+          <span class="task-title done">Toshiba ad report</span>
+          <span class="done-tag">✅ done 14/5</span>
+        </div>
+      </div>
+
+      <p style="color:#555;font-size:0.85rem;margin-top:1rem;">Non-recurring completed tasks appear here.</p>
+    </div>
+
     <p class="footer">Managed by Cheri</p>
   </div>
 
   <script>
+    function showTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(function(el) { el.classList.remove('active'); });
+      document.querySelectorAll('.tab-btn').forEach(function(el) { el.classList.remove('active'); });
+      document.getElementById('tab-' + tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+
     (function() {
       var today = new Date();
       var dateStr = ('0' + today.getDate()).slice(-2) + '/' + ('0' + (today.getMonth() + 1)).slice(-2);
